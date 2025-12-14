@@ -12,6 +12,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { CheckSquare, User, Stethoscope, Shield, Loader2 } from "lucide-react"
+import { getURL } from "@/lib/utils"
 
 type UserRole = "user" | "psychiatrist" | "admin"
 
@@ -69,7 +70,7 @@ export default function RegisterPage() {
         email,
         password,
         options: {
-          emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || window.location.origin,
+          emailRedirectTo: getURL("/auth/callback"),
           data: {
             full_name: fullName,
             role: role,
@@ -176,19 +177,17 @@ export default function RegisterPage() {
                       <Label
                         key={option.value}
                         htmlFor={option.value}
-                        className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${
-                          role === option.value
+                        className={`flex items-center gap-3 p-3 rounded-xl border-2 cursor-pointer transition-all ${role === option.value
                             ? "border-primary bg-primary/5"
                             : "border-transparent bg-muted/50 hover:border-primary/30"
-                        }`}
+                          }`}
                       >
                         <RadioGroupItem value={option.value} id={option.value} className="sr-only" />
                         <div
-                          className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                            role === option.value
+                          className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 transition-colors ${role === option.value
                               ? "bg-primary text-primary-foreground"
                               : "bg-background text-muted-foreground"
-                          }`}
+                            }`}
                         >
                           {option.icon}
                         </div>

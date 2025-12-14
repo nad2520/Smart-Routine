@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { useState } from "react"
 import { CheckSquare, Loader2, ArrowLeft, Mail } from "lucide-react"
+import { getURL } from "@/lib/utils"
 
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState("")
@@ -26,7 +27,7 @@ export default function ForgotPasswordPage() {
 
         try {
             const { error } = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: `${window.location.origin}/auth/update-password`,
+                redirectTo: getURL("/auth/update-password"),
             })
             if (error) throw error
             setSuccess(true)
