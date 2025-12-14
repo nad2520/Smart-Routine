@@ -1,4 +1,4 @@
-# ✅ COMPLETE: Sample Patient Data Script
+# ✅ COMPLETE: Sample Patient Data Scriptt
 
 ## 📋 What I Created
 
